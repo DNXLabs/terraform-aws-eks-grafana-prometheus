@@ -92,6 +92,45 @@ For creating a dashboard to monitor all the pods:
 
 <!--- BEGIN_TF_DOCS --->
 
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13 |
+| aws | >= 3.13, < 4.0 |
+| helm | >= 1.0, < 1.4.0 |
+| kubernetes | >= 1.10.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| helm | >= 1.0, < 1.4.0 |
+| kubernetes | >= 1.10.0 |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| create\_namespace | Whether to create Kubernetes namespace with name defined by `namespace`. | `bool` | `true` | no |
+| enabled | Variable indicating whether deployment is enabled. | `bool` | `true` | no |
+| helm\_chart\_grafana\_name | Grafana Helm chart name to be installed | `string` | `"grafana"` | no |
+| helm\_chart\_grafana\_release\_name | Grafana Helm release name | `string` | `"grafana"` | no |
+| helm\_chart\_grafana\_repo | Grafana repository name. | `string` | `"https://grafana.github.io/helm-charts"` | no |
+| helm\_chart\_grafana\_version | Grafana Helm chart version. | `string` | `"6.1.17"` | no |
+| helm\_chart\_prometheus\_name | Prometheus Helm chart name to be installed | `string` | `"prometheus"` | no |
+| helm\_chart\_prometheus\_release\_name | Prometheus Helm release name | `string` | `"prometheus"` | no |
+| helm\_chart\_prometheus\_repo | Prometheus repository name. | `string` | `"https://prometheus-community.github.io/helm-charts"` | no |
+| helm\_chart\_prometheus\_version | Prometheus Helm chart version. | `string` | `"13.2.1"` | no |
+| mod\_dependency | Dependence variable binds all AWS resources allocated by this module, dependent modules reference this variable. | `any` | `null` | no |
+| namespace | Kubernetes namespace to deploy Monitoring stack Helm charts. | `string` | `"monitoring-system"` | no |
+| settings\_grafana | Additional settings which will be passed to Grafana Helm chart values. | `map(any)` | `{}` | no |
+| settings\_prometheus | Additional settings which will be passed to Prometheus Helm chart values. | `map(any)` | `{}` | no |
+
+## Outputs
+
+No output.
+
 <!--- END_TF_DOCS --->
 
 ## Authors
