@@ -7,22 +7,14 @@ resource "helm_release" "grafana" {
   version    = var.helm_chart_grafana_version
   namespace  = var.namespace
 
-  values = [
-    file("${path.module}/grafana.yaml")
-  ]
-
   set {
     name  = "adminPassword"
     value = "admin"
   }
 
-  dynamic "set" {
-    for_each = var.settings_grafana
-
-    content {
-      name  = set.key
-      value = set.value
-    }
-  }
+  values = [
+    file("${path.module}/grafana.yaml"),
+    yamlencode(var.settings_grafana)
+  ]
 
 }

@@ -7,13 +7,8 @@ resource "helm_release" "prometheus" {
   version    = var.helm_chart_prometheus_version
   namespace  = var.namespace
 
-  dynamic "set" {
-    for_each = var.settings_prometheus
-
-    content {
-      name  = set.key
-      value = set.value
-    }
-  }
+  values = [
+    yamlencode(var.settings_prometheus)
+  ]
 
 }

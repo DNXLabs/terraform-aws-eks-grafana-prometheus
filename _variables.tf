@@ -24,7 +24,6 @@ variable "mod_dependency" {
 # Prometheus
 
 variable "settings_prometheus" {
-  type        = map(any)
   default     = {}
   description = "Additional settings which will be passed to Prometheus Helm chart values."
 }
@@ -56,7 +55,6 @@ variable "helm_chart_prometheus_repo" {
 # Grafana
 
 variable "settings_grafana" {
-  type        = map(any)
   default     = {}
   description = "Additional settings which will be passed to Grafana Helm chart values."
 }
