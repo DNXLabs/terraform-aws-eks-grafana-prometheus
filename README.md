@@ -98,15 +98,15 @@ For creating a dashboard to monitor all the pods:
 |------|---------|
 | terraform | >= 0.13 |
 | aws | >= 3.13, < 4.0 |
-| helm | >= 1.0, < 1.4.0 |
-| kubernetes | >= 1.10.0 |
+| helm | >= 1.0, < 3.0 |
+| kubernetes | >= 1.10.0, < 3.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| helm | >= 1.0, < 1.4.0 |
-| kubernetes | >= 1.10.0 |
+| helm | >= 1.0, < 3.0 |
+| kubernetes | >= 1.10.0, < 3.0.0 |
 
 ## Inputs
 
@@ -124,8 +124,8 @@ For creating a dashboard to monitor all the pods:
 | helm\_chart\_prometheus\_version | Prometheus Helm chart version. | `string` | `"13.2.1"` | no |
 | mod\_dependency | Dependence variable binds all AWS resources allocated by this module, dependent modules reference this variable. | `any` | `null` | no |
 | namespace | Kubernetes namespace to deploy Monitoring stack Helm charts. | `string` | `"monitoring-system"` | no |
-| settings\_grafana | Additional settings which will be passed to Grafana Helm chart values. | `map(any)` | `{}` | no |
-| settings\_prometheus | Additional settings which will be passed to Prometheus Helm chart values. | `map(any)` | `{}` | no |
+| settings\_grafana | Additional settings which will be passed to Grafana Helm chart values. | `map` | `{}` | no |
+| settings\_prometheus | Additional settings which will be passed to Prometheus Helm chart values. | `map` | `{}` | no |
 
 ## Outputs
 
