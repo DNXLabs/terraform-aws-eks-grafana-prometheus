@@ -24,19 +24,20 @@ module "grafana_prometheus_monitoring" {
 Check if Prometheus and Grafana components deployed as expected:
 
 ```bash
-kubectl get all -n monitoring-system
+kubectl get all -n prometheus
+kubectl get all -n grafana
 ```
 
 In order to access the Prometheus and Grafana server URL, we are going to use the kubectl port-forward command to access the application.
 
 ```bash
 # Prometheus
-kubectl port-forward --address 0.0.0.0 -n monitoring-system deploy/prometheus-server 8001:9090
+kubectl port-forward --address 0.0.0.0 -n prometheus deploy/prometheus-server 8001:9090
 ```
 
 ```bash
 # Grafana
-kubectl port-forward --address 0.0.0.0 -n monitoring-system deploy/grafana 8001:3000
+kubectl port-forward --address 0.0.0.0 -n grafana deploy/grafana 8001:3000
 ```
 
 When logging in, use the **username** and **password** `admin`.
