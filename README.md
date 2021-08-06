@@ -18,22 +18,6 @@ module "grafana_prometheus_monitoring" {
   source = "git::https://github.com/DNXLabs/terraform-aws-eks-grafana-prometheus.git"
 
   enabled = true
-
-  settings_prometheus = {
-    "alertmanager.persistentVolume.enabled"      = true
-    "alertmanager.persistentVolume.storageClass" = "gp2"
-
-    "server.persistentVolume.enabled"      =  true
-    "server.persistentVolume.storageClass" = "gp2"
-
-    # "server.service.type" = "LoadBalancer" # Default to ClusterIP, uncoment to expose service.
-  }
-  settings_grafana    = {
-    "persistence.storageClassName" = "gp2"
-    "persistence.enabled"          = true
-
-    # "service.type" = "LoadBalancer" # Default to ClusterIP, uncoment to expose service.
-  }
 }
 ```
 
