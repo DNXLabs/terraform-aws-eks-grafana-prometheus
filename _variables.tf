@@ -4,16 +4,28 @@ variable "enabled" {
   description = "Variable indicating whether deployment is enabled."
 }
 
-variable "create_namespace" {
+variable "create_namespace_prometheus" {
   type        = bool
   default     = true
-  description = "Whether to create Kubernetes namespace with name defined by `namespace`."
+  description = "Whether to create Prometheus Kubernetes namespace with name defined by `namespace`."
 }
 
-variable "namespace" {
+variable "create_namespace_grafana" {
+  type        = bool
+  default     = true
+  description = "Whether to create Grafana Kubernetes namespace with name defined by `namespace`."
+}
+
+variable "namespace_prometheus" {
   type        = string
-  default     = "monitoring-system"
-  description = "Kubernetes namespace to deploy Monitoring stack Helm charts."
+  default     = "prometheus"
+  description = "Kubernetes namespace to deploy Prometheus stack Helm charts."
+}
+
+variable "namespace_grafana" {
+  type        = string
+  default     = "grafana"
+  description = "Kubernetes namespace to deploy Grafana stack Helm charts."
 }
 
 variable "mod_dependency" {
@@ -24,7 +36,18 @@ variable "mod_dependency" {
 # Prometheus
 
 variable "settings_prometheus" {
-  default     = {}
+  default = {
+    alertmanager = {
+      persistentVolume = {
+        storageClass = "gp2"
+      }
+    }
+    server = {
+      persistentVolume = {
+        storageClass = "gp2"
+      }
+    }
+  }
   description = "Additional settings which will be passed to Prometheus Helm chart values."
 }
 
@@ -42,7 +65,7 @@ variable "helm_chart_prometheus_name" {
 
 variable "helm_chart_prometheus_version" {
   type        = string
-  default     = "13.2.1"
+  default     = "14.5.0"
   description = "Prometheus Helm chart version."
 }
 
@@ -55,7 +78,13 @@ variable "helm_chart_prometheus_repo" {
 # Grafana
 
 variable "settings_grafana" {
-  default     = {}
+  default = {
+    persistence = {
+      enabled          = true
+      storageClassName = "gp2"
+    }
+    adminPassword = "admin"
+  }
   description = "Additional settings which will be passed to Grafana Helm chart values."
 }
 
@@ -73,7 +102,7 @@ variable "helm_chart_grafana_name" {
 
 variable "helm_chart_grafana_version" {
   type        = string
-  default     = "6.1.17"
+  default     = "6.15.0"
   description = "Grafana Helm chart version."
 }
 
