@@ -96,20 +96,22 @@ For creating a dashboard to monitor all the pods:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| create\_namespace | Whether to create Kubernetes namespace with name defined by `namespace`. | `bool` | `true` | no |
+| create\_namespace\_grafana | Whether to create Grafana Kubernetes namespace with name defined by `namespace`. | `bool` | `true` | no |
+| create\_namespace\_prometheus | Whether to create Prometheus Kubernetes namespace with name defined by `namespace`. | `bool` | `true` | no |
 | enabled | Variable indicating whether deployment is enabled. | `bool` | `true` | no |
 | helm\_chart\_grafana\_name | Grafana Helm chart name to be installed | `string` | `"grafana"` | no |
 | helm\_chart\_grafana\_release\_name | Grafana Helm release name | `string` | `"grafana"` | no |
 | helm\_chart\_grafana\_repo | Grafana repository name. | `string` | `"https://grafana.github.io/helm-charts"` | no |
-| helm\_chart\_grafana\_version | Grafana Helm chart version. | `string` | `"6.1.17"` | no |
+| helm\_chart\_grafana\_version | Grafana Helm chart version. | `string` | `"6.15.0"` | no |
 | helm\_chart\_prometheus\_name | Prometheus Helm chart name to be installed | `string` | `"prometheus"` | no |
 | helm\_chart\_prometheus\_release\_name | Prometheus Helm release name | `string` | `"prometheus"` | no |
 | helm\_chart\_prometheus\_repo | Prometheus repository name. | `string` | `"https://prometheus-community.github.io/helm-charts"` | no |
-| helm\_chart\_prometheus\_version | Prometheus Helm chart version. | `string` | `"13.2.1"` | no |
+| helm\_chart\_prometheus\_version | Prometheus Helm chart version. | `string` | `"14.5.0"` | no |
 | mod\_dependency | Dependence variable binds all AWS resources allocated by this module, dependent modules reference this variable. | `any` | `null` | no |
-| namespace | Kubernetes namespace to deploy Monitoring stack Helm charts. | `string` | `"monitoring-system"` | no |
-| settings\_grafana | Additional settings which will be passed to Grafana Helm chart values. | `map` | `{}` | no |
-| settings\_prometheus | Additional settings which will be passed to Prometheus Helm chart values. | `map` | `{}` | no |
+| namespace\_grafana | Kubernetes namespace to deploy Grafana stack Helm charts. | `string` | `"grafana"` | no |
+| namespace\_prometheus | Kubernetes namespace to deploy Prometheus stack Helm charts. | `string` | `"prometheus"` | no |
+| settings\_grafana | Additional settings which will be passed to Grafana Helm chart values. | `map` | <pre>{<br>  "adminPassword": "admin",<br>  "persistence": {<br>    "enabled": true,<br>    "storageClassName": "gp2"<br>  }<br>}</pre> | no |
+| settings\_prometheus | Additional settings which will be passed to Prometheus Helm chart values. | `map` | <pre>{<br>  "alertmanager": {<br>    "persistentVolume": {<br>      "storageClass": "gp2"<br>    }<br>  },<br>  "server": {<br>    "persistentVolume": {<br>      "storageClass": "gp2"<br>    }<br>  }<br>}</pre> | no |
 
 ## Outputs
 
