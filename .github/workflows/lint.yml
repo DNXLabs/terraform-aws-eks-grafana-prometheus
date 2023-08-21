@@ -31,10 +31,10 @@ jobs:
         env:
           AWS_REGION: 'us-east-1'
           TF_WARN_OUTPUT_ERRORS: 1
-          TF_VAR_vpc_id: 'vpc-123456'
-          TF_VAR_subnets: '["subnet-12345a"]'
-          TF_VAR_workers_ami_id: 'ami-123456'
-          TF_VAR_cluster_name: 'test_cluster'
+          TF_VAR_vpc_id: 'vpc-0b6ec450c06a90dcd'
+          TF_VAR_subnets: '["subnet-006c764bc7938ac83"]'
+          TF_VAR_workers_ami_id: 'ami-03b65ae40a25e2ed9'
+          TF_VAR_cluster_name: 'dev-infra-grafeno'
         run: |
           terraform init
           terraform validate
